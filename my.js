@@ -7,9 +7,9 @@ var UILayout = function(){
 		var handlerleft = $("#handler_vertical").offset().left;
 		var deltaleft = handlerleft - $("#leftcontent").offset().left - $("#leftcontent").width();
 		
-		$("#leftcontent").css("width", leftwidth + deltaleft);
-		$("#rightcontent").css("width", rightwidth - deltaleft )
-			.css("left", handlerleft + $("#handler_vertical").width() - $("#sidebar").width());
+		$("#leftcontent").css("width", leftwidth + deltaleft-2);
+		$("#rightcontent").css("width", rightwidth - deltaleft+2 )
+			.css("left", handlerleft + $("#handler_vertical").width() - $("#sidebar").width()-2);
 	}
 
 	function _window_resize_handler()
