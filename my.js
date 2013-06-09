@@ -5,20 +5,22 @@ var UILayout = function(){
 		var leftwidth = $("#leftcontent").width();
 		var rightwidth = $("#rightcontent").width();
 		var handlerleft = $("#handler_vertical").offset().left;
-		$("#leftcontent").css("width", handlerleft - 4);
+		var deltaleft = handlerleft - $("#leftcontent").offset().left - $("#leftcontent").width();
 		
-		var offsetleft =  handlerleft - 4 - leftwidth;
-		$("#rightcontent").css("width", rightwidth - offsetleft)
-			.css("left", handlerleft + 8);
+		$("#leftcontent").css("width", leftwidth + deltaleft);
+		$("#rightcontent").css("width", rightwidth - deltaleft )
+			.css("left", handlerleft + $("#handler_vertical").width() - $("#sidebar").width());
 	}
 
 	function _window_resize_handler()
 	{
 		var winHeight = this.innerHeight;
-		var mainboxWidth = parseInt($("#mainbox").css("width"));
+		var mainboxWidth = this.innerWidth - $("#sidebar").width() - 5;
+		$("#sidebar").height(winHeight - 100);
 
 		// update the div size.
-		$("#mainbox").css("height", winHeight-130);	
+		$("#mainbox").css("width", mainboxWidth);
+		$("#mainbox").css("height", winHeight-105);	
 		$("#leftcontent").css("width", mainboxWidth/2 - 4);
 
 		var innerdivheight = $("#leftcontent").height();
@@ -28,7 +30,10 @@ var UILayout = function(){
 		$("#rightcontent").css("width", mainboxWidth - rightcontentleft - 12)
 			.css("height", innerdivheight)
 			.css("left", rightcontentleft+8);
-	}	
+
+		$("#footer").css("top", winHeight - 50);
+	}
+		 
 
 	function Initialize()
 	{
