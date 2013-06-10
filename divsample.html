@@ -43,13 +43,19 @@
 	<div id="mainbox">
 	  <div id="leftcontent"></div>
 	  <div class="ui-widget-content" id="handler_vertical"></div>
-	  <div id="rightcontent"></div>
+	  <div id="rightcontent">
+		<iframe src="rightframe.html"></iframe>
+	  </div>
 	</div>
 	<div id="footer"></div>
 	<script type="text/javascript">
-	  $(document).ready(function(){
-		  UILayout.Initialize();
-	  });
+    window.blocklyLoaded = function(blockly) {
+        // Called once Blockly is fully loaded.
+        window.Blockly = blockly;
+    }
+$(document).ready(function(){
+	UILayout.Initialize();
+});
 	</script>
   </body>
 </html>
