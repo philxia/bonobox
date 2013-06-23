@@ -10,6 +10,9 @@ var UILayout = function(){
 		$("#leftcontent").css("width", leftwidth + deltaleft-2);
 		$("#rightcontent").css("width", rightwidth - deltaleft+2 )
 			.css("left", handlerleft + $("#handler_vertical").width() - $("#sidebar").width()-2);
+
+		// resize the blocky frame.
+		$("#blocky_frame").css("width", rightwidth - deltaleft-12);
 	}
 
 	function _window_resize_handler()
@@ -31,6 +34,10 @@ var UILayout = function(){
 			.css("height", innerdivheight)
 			.css("left", rightcontentleft+8);
 
+		// resize the blocky frame.
+		$("#blocky_frame").css("width", mainboxWidth - rightcontentleft - 30)
+		    .css("height", innerdivheight - 20);
+
 		$("#footer").css("top", winHeight - 50);
 	}
 		 
@@ -50,9 +57,21 @@ var UILayout = function(){
 			axis:"x",
 			drag: function(arg) {
 				_anchor_verticalhandler();
+
+				// suppress the mouse events for the right frame.
+				if(Blockly != null)
+				{
+					//Blockly.noEvent();
+				}
 			},
 			stop: function(arg) {
 				_anchor_verticalhandler();
+
+				// restores the mouse events for the right frame.
+				if(Blockly != null)
+				{
+					//Blockly.noEvent();
+				}
 			}
 		});
 	}
